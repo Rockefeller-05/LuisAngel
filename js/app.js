@@ -328,6 +328,7 @@ function hideModal() {
     modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
     currentCocktail = null;
+    document.querySelector('.modal__body').scrollTop = 0;
 }
 
 function openWhatsApp() {
