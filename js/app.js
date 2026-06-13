@@ -247,9 +247,10 @@ const cocktailCount = document.getElementById('cocktailCount');
 const modal = document.getElementById('cocktailModal');
 const modalOverlay = document.getElementById('modalOverlay');
 const modalClose = document.getElementById('modalClose');
+const modalWhatsapp = document.getElementById('modalWhatsapp');
 const themeToggle = document.getElementById('themeToggle');
-const themeIcon = themeToggle.querySelector('.theme-toggle__icon');
-const themeText = themeToggle.querySelector('.theme-toggle__text');
+
+let currentCocktail = null;
 
 cocktailCount.textContent = cocktails.length;
 
@@ -299,6 +300,8 @@ function renderCocktails() {
 }
 
 function showModal(cocktail) {
+    currentCocktail = cocktail;
+
     document.getElementById('modalImage').src = cocktail.image;
     document.getElementById('modalImage').alt = cocktail.name;
     document.getElementById('modalNumber').textContent = `N° ${cocktail.id.toString().padStart(2, '0')}`;
@@ -313,6 +316,8 @@ function showModal(cocktail) {
         .map(ingredient => `<li>${ingredient}</li>`)
         .join('');
 
+    modalWhatsapp.onclick = openWhatsApp;
+
     modal.classList.add('active');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -322,6 +327,17 @@ function hideModal() {
     modal.classList.remove('active');
     modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    currentCocktail = null;
+}
+
+function openWhatsApp() {
+    if (!currentCocktail) return;
+    const phone = '51999929254';
+    const drinkName = currentCocktail.subtitle
+        ? `${currentCocktail.name} (${currentCocktail.subtitle})`
+        : currentCocktail.name;
+    const text = `Hola, quiero pedir un ${drinkName}. ¿Podrían confirmarme?`;
+    window.open(`https://wa.me/${phone}?text=${encodeURIComponent(text)}`, '_blank');
 }
 
 modalOverlay.addEventListener('click', hideModal);
@@ -335,19 +351,13 @@ document.addEventListener('keydown', (e) => {
 
 function toggleTheme() {
     const body = document.body;
-    const isTropical = body.classList.contains('theme-tropical');
-
-    if (isTropical) {
+    if (body.classList.contains('theme-tropical')) {
         body.classList.remove('theme-tropical');
         body.classList.add('theme-elegant');
-        themeIcon.textContent = '🌙';
-        themeText.textContent = 'Tropical';
         localStorage.setItem('theme', 'elegant');
     } else {
         body.classList.remove('theme-elegant');
         body.classList.add('theme-tropical');
-        themeIcon.textContent = '☀️';
-        themeText.textContent = 'Elegante';
         localStorage.setItem('theme', 'tropical');
     }
 }
@@ -357,8 +367,6 @@ function loadTheme() {
     if (savedTheme === 'tropical') {
         document.body.classList.remove('theme-elegant');
         document.body.classList.add('theme-tropical');
-        themeIcon.textContent = '☀️';
-        themeText.textContent = 'Elegante';
     }
 }
 
