@@ -333,7 +333,7 @@ function hideModal() {
 
 function openWhatsApp() {
     if (!currentCocktail) return;
-    const phone = '51999929254';
+    const phone = '51969434750';
     const drinkName = currentCocktail.subtitle
         ? `${currentCocktail.name} (${currentCocktail.subtitle})`
         : currentCocktail.name;
