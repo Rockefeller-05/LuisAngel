@@ -220,10 +220,11 @@ const cocktails = [
         description: "Es un cóctel ultra refrescante, famoso por servirse en una taza de cobre que mantiene el frío al máximo.",
         image: "images/moscow-mule.jpg",
         ingredients: [
-            "2 oz de Vodka",
-            "½ oz de Zumo de limón",
-            "4 a 6 oz de Ginger Beer",
-            "1 oz jarabe artesanal",
+            "2 oz (60 ml) de Vodka",
+            "4 a 6 oz (120 - 180 ml) de Ginger Ale",
+            "½ oz (15 ml) de Jugo de limón",
+            "Jarabe de goma",
+            "1 rodaja de limón y unas hojas de menta fresca para decorar",
             "Hielo"
         ]
     },
@@ -238,6 +239,103 @@ const cocktails = [
             "4 a 6 oz de Agua tónica",
             "Jarabe de frutos rojos",
             "Dash de limón"
+        ]
+    },
+    {
+        id: 18,
+        name: "Screwdriver",
+        slogan: "El Amanecer Clásico",
+        description: "La simpleza perfecta: vodka neutro realzado por jugo de naranja natural recién exprimido, servido bien helado para un amanecer refrescante.",
+        image: "images/screwdriver.jpg",
+        ingredients: [
+            "2 oz (60 ml) de Vodka",
+            "4 oz (120 ml) de Jugo de naranja fresco (preferiblemente recién exprimido)",
+            "Cubos de hielo"
+        ]
+    },
+    {
+        id: 19,
+        name: "Pájaro Loco",
+        slogan: "Vuelo Tropical",
+        description: "Explosión caribeña de pisco y amaretto con jugos de piña y naranja, coronado con granadina para un degradado vibrante y dulce.",
+        image: "images/pajaro-loco.jpg",
+        ingredients: [
+            "45 ml de Pisco",
+            "22.5 ml de Licor de Amaretto",
+            "45 ml de Jugo fresco de piña",
+            "15 ml de Jugo de naranja",
+            "15 ml de Jarabe de granadina",
+            "Hielo"
+        ]
+    },
+    {
+        id: 20,
+        name: "Virgen Viciosa",
+        slogan: "Dulce Tentación",
+        description: "Cóctel cremoso y afrutado que combina whisky, vodka y licor de coco con jugos de durazno, maracuyá y mango, con un toque de granadina.",
+        image: "images/virgen-viciosa.jpg",
+        ingredients: [
+            "¼ oz de Whisky",
+            "½ oz de Vodka",
+            "½ oz de Licor de coco",
+            "Jugo de durazno, maracuyá y mango",
+            "Jarabe de granadina",
+            "Hielo"
+        ]
+    },
+    {
+        id: 21,
+        name: "Amazonia",
+        slogan: "Selva Líquida",
+        description: "Tributo amazónico: pisco o ron blanco con anisado y jarabe de canela, completado con jugo de naranja sobre hielo picado, exótico y aromático.",
+        image: "images/amazonia.jpg",
+        ingredients: [
+            "1 oz (30 ml) de Pisco o Ron blanco",
+            "1 oz (30 ml) de Anisado",
+            "1 oz (30 ml) de Jarabe de canela",
+            "Completar con Jugo de naranja",
+            "Hielo picado"
+        ]
+    },
+    {
+        id: 22,
+        name: "Inkauto",
+        slogan: "Brisa Andina",
+        description: "Fusión refrescante de gin y ginger ale con un toque de amaretto y limón, ligero, burbujeante y perfecto para la altura.",
+        image: "images/inkauto.jpg",
+        ingredients: [
+            "2 oz (60 ml) de Gin",
+            "4 a 5 oz (120 - 150 ml) de Ginger Ale",
+            "½ oz (15 ml) de Licor de Amaretto",
+            "Jugo de limón",
+            "Cubos de hielo",
+            "1 rodaja de limón para decorar"
+        ]
+    },
+    {
+        id: 23,
+        name: "Orgasmo Andino",
+        slogan: "Éxtasis de los Andes",
+        description: "Versión andina del clásico seductor, con macerado de hierbas, licor de café, jarabe de muña y amaretto en equilibrio ancestral y aromático.",
+        image: "images/orgasmo-andino.jpg",
+        ingredients: [
+            "1 oz (30 ml) de Macerado de hierbas",
+            "1 oz (30 ml) de Licor de café",
+            "1 oz (30 ml) de Jarabe de muña",
+            "1 oz (30 ml) de Amaretto (licor de almendras)"
+        ]
+    },
+    {
+        id: 24,
+        name: "Pantera",
+        slogan: "Rosa Salvaje",
+        description: "Cremosa y visualmente impactante, pisco con leche evaporada y granadina para un icónico color rosa, dulce, suave y envolvente.",
+        image: "images/pantera.jpg",
+        ingredients: [
+            "2 oz (60 ml) de Pisco blanco (o Vodka / Ron blanco)",
+            "2 oz (60 ml) de Leche evaporada o crema de leche",
+            "1 oz (30 ml) de Jarabe de granadina (para darle el icónico color rosa)",
+            "Hielo"
         ]
     }
 ];
