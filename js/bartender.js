@@ -27,11 +27,19 @@
 
   // Testimonials
   const testimonials = [
-    {name:"María & Jorge", role:"Boda · Puno", stars:"★★★★★", text:"La barra fue el alma de la fiesta. Puntuales, elegantes y los chilcanos volaron. ¡Todos preguntaron por el bartender!"},
-    {name:"Gerencia HR", role:"Corporativo · Juliaca", stars:"★★★★★", text:"Servicio impecable para 120 personas. Facturación al día y barra branding con nuestro logo. Repetiremos en diciembre."},
-    {name:"Camila R.", role:"Cumpleaños · Yunguyo", stars:"★★★★★", text:"Pedimos Barra Premium y superó expectativas. El show de flair y los cócteles sin alcohol para los niños fueron un detalleazo."},
-    {name:"Local Andino", role:"Festival · Desaguadero", stars:"★★★★☆", text:"Alto flujo y nunca colapsaron. Stock perfecto y control de caja transparente."},
+    {name:"María & Jorge", role:"Boda · Puno", stars:5, text:"La barra fue el alma de la fiesta. Puntuales, elegantes y los chilcanos volaron. ¡Todos preguntaron por el bartender!"},
+    {name:"Gerencia HR", role:"Corporativo · Juliaca", stars:5, text:"Servicio impecable para 120 personas. Facturación al día y barra branding con nuestro logo. Repetiremos en diciembre."},
+    {name:"Camila R.", role:"Cumpleaños · Juliaca", stars:5, text:"Pedimos Barra Premium y superó expectativas. El show de flair y los cócteles sin alcohol para los niños fueron un detalleazo."},
+    {name:"Local Andino", role:"Festival · Desaguadero", stars:4, text:"Alto flujo y nunca colapsaron. Stock perfecto y control de caja transparente."},
   ];
+  function starsSVG(n){
+    let s='';
+    for(let i=0;i<5;i++){
+      if(i<n) s+='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3l1.8 3.6l3.9 .6l-2.8 2.7l.7 3.9l-3.6 -1.9l-3.6 1.9l.7 -3.9l-2.8 -2.7l3.9 -.6z"/></svg>';
+      else s+='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l1.8 3.6l3.9 .6l-2.8 2.7l.7 3.9l-3.6 -1.9l-3.6 1.9l.7 -3.9l-2.8 -2.7l3.9 -.6z"/></svg>';
+    }
+    return s;
+  }
   const tTrack = document.getElementById('testimonialsTrack');
   const tDots = document.getElementById('testimonialsDots');
   if(tTrack){
@@ -41,7 +49,7 @@
           <div class="testimonial-card__avatar">${t.name.charAt(0)}</div>
           <div><div class="testimonial-card__name">${t.name}</div><div class="testimonial-card__role">${t.role}</div></div>
         </div>
-        <div class="testimonial-card__stars">${t.stars}</div>
+        <div class="testimonial-card__stars">${starsSVG(t.stars)}</div>
         <p>"${t.text}"</p>
       </article>
     `).join('');
