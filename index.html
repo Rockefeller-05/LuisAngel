@@ -3,29 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carta de Cócteles</title>
+    <title>Luis Angel Bartender | Barra Profesional para Eventos</title>
+    <meta name="description" content="Barra móvil profesional para compromisos sociales, corporativos y privados. 3 planes: Clásica, Premium y Élite. Carta de 24 cócteles.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body class="theme-elegant">
-    <label class="theme-switch" id="themeToggle" aria-label="Cambiar tema">
-        <span class="theme-switch__label">Elegante</span>
-        <span class="theme-switch__track">
-            <span class="theme-switch__thumb"></span>
-        </span>
-        <span class="theme-switch__label">Tropical</span>
-    </label>
+    <!-- NAV -->
+    <nav class="nav" id="nav">
+        <div class="container nav__container">
+            <a class="nav__logo" href="#hero">Luis<span>Angel</span> <em>Bartender</em></a>
+            <div class="nav__links" id="navLinks">
+                <a href="#servicios">Servicios</a>
+                <a href="#planes">Planes</a>
+                <a href="#carta">Carta</a>
+                <a href="#descuentos">Beneficios</a>
+                <a href="#contacto">Contacto</a>
+            </div>
+            <div class="nav__actions">
+                <label class="theme-switch" id="themeToggle" aria-label="Cambiar tema">
+                    <span class="theme-switch__label">Elegante</span>
+                    <span class="theme-switch__track"><span class="theme-switch__thumb"></span></span>
+                    <span class="theme-switch__label">Tropical</span>
+                </label>
+                <a class="nav__cta" href="https://wa.me/51969434750?text=Hola%20Luis%20Angel%2C%20quiero%20cotizar%20barra%20para%20mi%20evento" target="_blank">Cotizar</a>
+                <button class="nav__burger" id="navBurger" aria-label="Menú"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
 
-    <header class="hero">
+    <!-- HERO BARTENDER -->
+    <header class="hero" id="hero">
         <div class="hero__bg"></div>
-
         <div class="hero__decor hero__decor--1"></div>
         <div class="hero__decor hero__decor--2"></div>
         <div class="hero__decor hero__decor--3"></div>
         <div class="hero__decor hero__decor--4"></div>
-
         <div class="hero__sparkle hero__sparkle--1"></div>
         <div class="hero__sparkle hero__sparkle--2"></div>
         <div class="hero__sparkle hero__sparkle--3"></div>
@@ -34,32 +49,272 @@
         <div class="hero__sparkle hero__sparkle--6"></div>
 
         <div class="hero__content">
-            <p class="hero__subtitle">Bienvenido</p>
-            <h1 class="hero__title">Carta de Cócteles</h1>
+            <p class="hero__subtitle">Barra móvil profesional • Puno / Yunguyo / Sur del Perú</p>
+            <h1 class="hero__title">Tu evento,<br>nuestra barra</h1>
             <div class="hero__line"></div>
-            <p class="hero__description">Descubre nuestra selección de tragos clásicos y creativos, preparados para cada momento.</p>
+            <p class="hero__description">Llevamos la coctelería a tu compromiso social, empresa o celebración privada. Bartenders uniformados, insumos premium y una carta de <strong>24 creaciones</strong> para que tus invitados solo se preocupen por brindar.</p>
+            <div class="hero__ctas">
+                <a class="btn btn--primary" href="#planes">Ver planes</a>
+                <a class="btn btn--ghost" href="#carta">Ver carta</a>
+            </div>
+            <div class="hero__trust">
+                <span>✓ 200+ eventos</span><span>✓ Insumos premium</span><span>✓ Montaje incluido</span>
+            </div>
         </div>
         <div class="hero__scroll">
             <svg class="hero__scroll-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M7 13l5 5 5-5"/>
-                <path d="M7 6l5 5 5-5"/>
+                <path d="M7 13l5 5 5-5"/><path d="M7 6l5 5 5-5"/>
             </svg>
-            <span>Desplaza</span>
+            <span>Descubre</span>
         </div>
     </header>
 
-    <main class="menu" id="menu">
+    <!-- SERVICIOS -->
+    <section class="section services" id="servicios">
+        <div class="container">
+            <div class="section__header">
+                <p class="section__eyebrow">Qué hacemos</p>
+                <h2 class="section__title">Barra donde tú estés</h2>
+                <p class="section__subtitle">Nos adaptamos a tu formato — tú pones el motivo, nosotros la experiencia.</p>
+            </div>
+            <div class="services__grid">
+                <article class="service-card">
+                    <div class="service-card__icon">🥂</div>
+                    <h3>Compromisos sociales</h3>
+                    <p>Bodas, quinceañeros, aniversarios y fiestas familiares. Barra elegante, atención ágil y cócteles para todos los gustos.</p>
+                    <ul><li>Montaje y desmontaje</li><li>Cristalería y hielo</li><li>Hasta 200 invitados</li></ul>
+                </article>
+                <article class="service-card">
+                    <div class="service-card__icon">🏢</div>
+                    <h3>Empresas & corporativo</h3>
+                    <p>Aniversarios, lanzamientos, after office y cierre de año. Imagen impecable y servicio puntual.</p>
+                    <ul><li>Facturación</li><li>Uniforme corporativo</li><li>Barra branding</li></ul>
+                </article>
+                <article class="service-card">
+                    <div class="service-card__icon">🏡</div>
+                    <h3>Privados & locales</h3>
+                    <p>Cumpleaños, terrazas, discotecas y locales aliados. Formatos flexibles por horas.</p>
+                    <ul><li>Desde 4 horas</li><li>Carta personalizable</li><li>Show flair opcional</li></ul>
+                </article>
+                <article class="service-card">
+                    <div class="service-card__icon">🎉</div>
+                    <h3>Festivales & ferias</h3>
+                    <p>Stands de alto flujo, producción en cadena y control de stock en tiempo real.</p>
+                    <ul><li>Equipo 3+ bartenders</li><li>Stock calculado</li><li>Punto de venta</li></ul>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLANES -->
+    <section class="section plans" id="planes">
+        <div class="container">
+            <div class="section__header">
+                <p class="section__eyebrow">Elige tu experiencia</p>
+                <h2 class="section__title">Planes pensados para ti</h2>
+                <p class="section__subtitle">Tres niveles — mismo profesionalismo, distinta escala. Todos incluyen bartender(s) uniformado(s) y montaje.</p>
+            </div>
+            <div class="plans__grid">
+                <article class="plan-card">
+                    <div class="plan-card__head">
+                        <h3>Barra Clásica</h3><span class="plan-card__badge">Esencial</span>
+                        <p class="plan-card__price">Desde <strong>S/ 450</strong> <em>/ 4h · 50 pers</em></p>
+                    </div>
+                    <ul class="plan-card__list">
+                        <li>1 bartender uniformado</li>
+                        <li>8 cócteles a elección</li>
+                        <li>Cristalería, hielo y garnish</li>
+                        <li>Traslado local incluido</li>
+                    </ul>
+                    <p class="plan-card__note">Ideal para reuniones íntimas y corporativos pequeños.</p>
+                    <a class="btn btn--ghost btn--block" href="https://wa.me/51969434750?text=Hola%20quiero%20el%20Plan%20Barra%20Cl%C3%A1sica" target="_blank">Cotizar Clásica</a>
+                </article>
+                <article class="plan-card plan-card--featured">
+                    <div class="plan-card__ribbon">Más pedido</div>
+                    <div class="plan-card__head">
+                        <h3>Barra Premium</h3><span class="plan-card__badge plan-card__badge--accent">Premium</span>
+                        <p class="plan-card__price">Desde <strong>S/ 850</strong> <em>/ 5h · 100 pers</em></p>
+                    </div>
+                    <ul class="plan-card__list">
+                        <li>2 bartenders + ayudante</li>
+                        <li>15 cócteles (carta completa a elegir)</li>
+                        <li>Garnish premium + hielo seco show</li>
+                        <li>Barra iluminada</li>
+                    </ul>
+                    <p class="plan-card__note">Equilibrio perfecto para bodas y aniversarios.</p>
+                    <a class="btn btn--primary btn--block" href="https://wa.me/51969434750?text=Hola%20quiero%20el%20Plan%20Barra%20Premium" target="_blank">Cotizar Premium</a>
+                </article>
+                <article class="plan-card">
+                    <div class="plan-card__head">
+                        <h3>Barra Élite</h3><span class="plan-card__badge">Full</span>
+                        <p class="plan-card__price">Desde <strong>S/ 1,450</strong> <em>/ 6h · 200+ pers</em></p>
+                    </div>
+                    <ul class="plan-card__list">
+                        <li>3 bartenders + jefe de barra</li>
+                        <li>Carta completa 24 cócteles</li>
+                        <li>Show flair + carrito vintage</li>
+                        <li>Gestión de stock y cierre</li>
+                    </ul>
+                    <p class="plan-card__note">Producción total para grandes eventos y festivales.</p>
+                    <a class="btn btn--ghost btn--block" href="https://wa.me/51969434750?text=Hola%20quiero%20el%20Plan%20Barra%20%C3%89lite" target="_blank">Cotizar Élite</a>
+                </article>
+            </div>
+            <p class="plans__foot">¿Evento más grande o personalizado? <a href="#contacto">Cuéntanos y armamos tu plan</a> · Precios referenciales sur del Perú.</p>
+        </div>
+    </section>
+
+    <!-- CARTA (existente) -->
+    <main class="menu" id="carta">
         <div class="container">
             <div class="menu__header">
-                <h2 class="menu__title">Nuestra Carta</h2>
-                <p class="menu__count"><span id="cocktailCount">0</span> creaciones</p>
+                <p class="section__eyebrow">Nuestra carta</p>
+                <h2 class="menu__title">24 creaciones para tu barra</h2>
+                <p class="menu__count"><span id="cocktailCount">0</span> cócteles — toca para ver receta</p>
             </div>
             <div class="menu__grid" id="cocktailGrid"></div>
         </div>
     </main>
 
+    <!-- CARRUSEL DESTACADOS ALEATORIO -->
+    <section class="section carousel" id="destacados">
+        <div class="container">
+            <div class="section__header">
+                <p class="section__eyebrow">Inspiración</p>
+                <h2 class="section__title">Destacados aleatorios</h2>
+                <p class="section__subtitle">6 sugerencias que cambian cada visita — perfectas para tu evento.</p>
+            </div>
+            <div class="carousel__track" id="carouselTrack"></div>
+            <div class="carousel__controls">
+                <button class="carousel__btn" id="carouselPrev" aria-label="Anterior">‹</button>
+                <button class="carousel__btn" id="carouselShuffle" aria-label="Mezclar">↻ Mezclar</button>
+                <button class="carousel__btn" id="carouselNext" aria-label="Siguiente">›</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- DESCUENTOS -->
+    <section class="section discounts" id="descuentos">
+        <div class="container">
+            <div class="section__header">
+                <p class="section__eyebrow">Beneficios</p>
+                <h2 class="section__title">Descuentos exclusivos</h2>
+            </div>
+            <div class="discounts__grid">
+                <article class="discount-card">
+                    <span class="discount-card__off">15% OFF</span>
+                    <h3>Primer evento</h3>
+                    <p>Si es tu primera barra con nosotros, te regalamos el traslado + 15% en Barra Clásica.</p>
+                    <code>BIENVENIDO15</code>
+                </article>
+                <article class="discount-card discount-card--accent">
+                    <span class="discount-card__off">10% OFF</span>
+                    <h3>Cliente frecuente</h3>
+                    <p>¿Ya fuiste anfitrión? 10% en tu siguiente reserva dentro de 3 meses.</p>
+                    <code>LEALTAD10</code>
+                </article>
+                <article class="discount-card">
+                    <span class="discount-card__off">Pack</span>
+                    <h3>Corporativo anual</h3>
+                    <p>Contrata 3 fechas al año y congela tarifa + barra branding sin costo.</p>
+                    <code>CORP3X</code>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESEÑAS -->
+    <section class="section testimonials" id="resenas">
+        <div class="container">
+            <div class="section__header">
+                <p class="section__eyebrow">Lo que dicen</p>
+                <h2 class="section__title">Reseñas de clientes</h2>
+            </div>
+            <div class="testimonials__track" id="testimonialsTrack"></div>
+            <div class="testimonials__dots" id="testimonialsDots"></div>
+        </div>
+    </section>
+
+    <!-- GALERÍA -->
+    <section class="section gallery" id="galeria">
+        <div class="container">
+            <div class="section__header">
+                <p class="section__eyebrow">En acción</p>
+                <h2 class="section__title">Galería</h2>
+            </div>
+            <div class="gallery__grid">
+                <div class="gallery__item"><img src="images/mojito.jpg" alt="Barra en boda" loading="lazy"></div>
+                <div class="gallery__item"><img src="images/pisco-sour.jpg" alt="Cóctel pisco sour" loading="lazy"></div>
+                <div class="gallery__item"><img src="images/screwdriver.jpg" alt="Screwdriver" loading="lazy"></div>
+                <div class="gallery__item"><img src="images/virgen-viciosa.jpg" alt="Virgen Viciosa" loading="lazy"></div>
+                <div class="gallery__item"><img src="images/pantera.jpg" alt="Pantera rosa" loading="lazy"></div>
+                <div class="gallery__item"><img src="images/espresso-martini.jpg" alt="Espresso martini" loading="lazy"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="section contact" id="contacto">
+        <div class="container contact__grid">
+            <div class="contact__info">
+                <p class="section__eyebrow">Cotiza en 1 minuto</p>
+                <h2 class="section__title">Hablemos de tu evento</h2>
+                <p>Respuesta en menos de 2 horas. Barra en Yunguyo, Puno y todo el sur.</p>
+                <ul class="contact__list">
+                    <li>📍 Yunguyo — cobertura sur del Perú</li>
+                    <li>📞 <a href="tel:+51969434750">+51 969 434 750</a> — WhatsApp directo</li>
+                    <li>✉️ luisangel.bartender@email.com</li>
+                </ul>
+                <div class="contact__socials">
+                    <a href="https://wa.me/51969434750" target="_blank" class="btn btn--primary">WhatsApp directo</a>
+                    <a href="#planes" class="btn btn--ghost">Ver planes</a>
+                </div>
+            </div>
+            <form class="contact__form" id="contactForm" novalidate>
+                <div class="form__row">
+                    <label>Nombre<input type="text" name="nombre" placeholder="Tu nombre" required></label>
+                    <label>Teléfono<input type="tel" name="telefono" placeholder="9xx xxx xxx" required></label>
+                </div>
+                <label>Tipo de evento<select name="tipo" required><option value="">Selecciona</option><option>Compromiso social</option><option>Corporativo</option><option>Privado</option><option>Festival</option></select></label>
+                <div class="form__row">
+                    <label>Fecha<input type="date" name="fecha" required></label>
+                    <label>Invitados<input type="number" name="invitados" placeholder="Ej: 80" min="10" required></label>
+                </div>
+                <label>Plan de interés<select name="plan"><option value="">Elige plan</option><option>Barra Clásica</option><option>Barra Premium</option><option>Barra Élite</option><option>Personalizado</option></select></label>
+                <label>Mensaje<textarea name="mensaje" rows="3" placeholder="Cuéntanos lugar, horario y cócteles favoritos..."></textarea></label>
+                <button type="submit" class="btn btn--primary btn--block">Enviar por WhatsApp</button>
+                <p class="form__hint">Al enviar se abre WhatsApp con tu cotización pre-llenada. Sin spam.</p>
+            </form>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section faq" id="faq">
+        <div class="container">
+            <div class="section__header">
+                <p class="section__eyebrow">Dudas</p>
+                <h2 class="section__title">Preguntas frecuentes</h2>
+            </div>
+            <div class="faq__list">
+                <details class="faq__item" open><summary>¿Qué incluye la barra? ¿Yo pongo algo?</summary><p>Bartender(s) uniformado(s), barra portátil, cristalería, hielo, insumos y garnish según plan. Tú solo pones el espacio y punto de agua/electricidad. Opcional: tú provees el destilado base y bajamos costo.</p></details>
+                <details class="faq__item"><summary>¿Con cuánto tiempo reservo?</summary><p>Ideal 15 días para sociales y 7 días para privados. Fechas pico (diciembre, fiestas patrias) reserva con 30 días y 30% adelanto.</p></details>
+                <details class="faq__item"><summary>¿Hacen cócteles sin alcohol?</summary><p>Sí — todos tienen versión virgen (ej. Virgen Viciosa, Piña Colada). Ideal para familias y conductores designados.</p></details>
+                <details class="faq__item"><summary>¿Emiten factura y contrato?</summary><p>Sí, factura/boleta y contrato simple con detalle de plan, horario y política de cancelación.</p></details>
+            </div>
+        </div>
+    </section>
+
     <footer class="footer">
-        <p>Carta de Cócteles &copy; 2026</p>
+        <div class="container footer__grid">
+            <div>
+                <strong>Luis Angel Bartender</strong><br>Barra móvil profesional — Yunguyo, Puno<br>Carta 24 cócteles &copy; 2026
+            </div>
+            <div class="footer__links">
+                <a href="#servicios">Servicios</a><a href="#planes">Planes</a><a href="#carta">Carta</a><a href="#contacto">Contacto</a>
+            </div>
+            <div>
+                <a href="https://wa.me/51969434750" target="_blank">WhatsApp</a> · <a href="mailto:luisangel.bartender@email.com">Email</a>
+            </div>
+        </div>
     </footer>
 
     <div class="modal" id="cocktailModal" aria-hidden="true">
@@ -89,5 +344,6 @@
     </div>
 
     <script src="js/app.js"></script>
+    <script src="js/bartender.js"></script>
 </body>
 </html>
