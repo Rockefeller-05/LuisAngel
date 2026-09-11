@@ -1,4 +1,4 @@
-// Bartender services - carousel, testimonials, nav, contact
+// Bartender services - testimonials, nav, contact
 (function(){
   // NAV burger
   const burger = document.getElementById('navBurger');
@@ -24,55 +24,6 @@
       }
     });
   });
-
-  // Wait for cocktails to be defined (app.js loads before)
-  function initCarousel(){
-    if(typeof cocktails === 'undefined' || !Array.isArray(cocktails) || cocktails.length===0){
-      setTimeout(initCarousel, 100);
-      return;
-    }
-    const track = document.getElementById('carouselTrack');
-    if(!track) return;
-
-    function shuffle(arr){
-      const a=[...arr];
-      for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
-      return a;
-    }
-    function render(){
-      const picks = shuffle(cocktails).slice(0,6);
-      track.innerHTML='';
-      picks.forEach((c, idx)=>{
-        const card=document.createElement('article');
-        card.className='cocktail-card visible';
-        card.style.transitionDelay = (idx*60)+'ms';
-        card.innerHTML=`
-          <div class="cocktail-card__image-wrapper">
-            <img class="cocktail-card__image" src="${c.image}" alt="${c.name}" loading="lazy">
-            <span class="cocktail-card__number">${c.id}</span>
-          </div>
-          <div class="cocktail-card__content">
-            <h3 class="cocktail-card__name">${c.name}</h3>
-            ${c.slogan?`<p class="cocktail-card__slogan">${c.slogan}</p>`:''}
-            <p class="cocktail-card__description">${c.description}</p>
-            <span class="cocktail-card__view">Ver receta <span>→</span></span>
-          </div>`;
-        card.addEventListener('click', ()=>{
-          // reuse modal from app.js if available
-          if(typeof showModal === 'function') showModal(c);
-          else window.scrollTo({top: document.getElementById('carta').offsetTop, behavior:'smooth'});
-        });
-        track.appendChild(card);
-      });
-    }
-    render();
-    document.getElementById('carouselShuffle')?.addEventListener('click', render);
-    document.getElementById('carouselPrev')?.addEventListener('click', ()=> track.scrollBy({left:-320, behavior:'smooth'}));
-    document.getElementById('carouselNext')?.addEventListener('click', ()=> track.scrollBy({left:320, behavior:'smooth'}));
-    // auto shuffle every 10s
-    setInterval(render, 10000);
-  }
-  initCarousel();
 
   // Testimonials
   const testimonials = [

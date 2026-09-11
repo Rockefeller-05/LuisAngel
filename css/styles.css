@@ -956,14 +956,6 @@ body::before {
 .plans__foot { text-align: center; margin-top: 28px; font-size: 0.9rem; color: var(--text-muted); }
 .plans__foot a { color: var(--accent); text-decoration: none; }
 
-/* Carousel */
-.carousel { background: var(--bg-secondary); }
-.carousel__track { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 22px; margin-bottom: 20px; }
-.carousel__track .cocktail-card { opacity: 1; transform: none; }
-.carousel__controls { display: flex; justify-content: center; gap: 12px; }
-.carousel__btn { width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--border); background: var(--bg-card); color: var(--text-primary); font-size: 1.1rem; cursor: pointer; transition: all var(--transition-fast); }
-.carousel__btn:hover { border-color: var(--accent); background: var(--accent); color: var(--bg-primary); }
-
 /* Discounts */
 .discounts__grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 22px; }
 .discount-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; text-align: center; position: relative; overflow: hidden; }
