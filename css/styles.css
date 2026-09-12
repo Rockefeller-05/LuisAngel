@@ -905,11 +905,15 @@ body::before {
 
 /* Buttons */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 24px; border-radius: 50px; font-family: var(--font-body); font-size: 0.9rem; font-weight: 600; text-decoration: none; border: 1px solid transparent; cursor: pointer; transition: all var(--transition-fast); }
+.btn:link, .btn:visited, .btn:active { text-decoration: none; }
+.btn--primary, .btn--primary:link, .btn--primary:visited, .btn--primary:active { color: var(--bg-primary); text-decoration: none; }
+.btn--ghost, .btn--ghost:link, .btn--ghost:visited, .btn--ghost:active { color: var(--text-primary); text-decoration: none; }
 .btn--primary { background: var(--accent); color: var(--bg-primary); border-color: var(--accent); box-shadow: 0 4px 16px var(--accent-glow); }
 .btn--primary:hover { background: var(--accent-hover); transform: translateY(-2px); }
 .btn--ghost { background: transparent; color: var(--text-primary); border-color: var(--border); backdrop-filter: blur(8px); }
 .btn--ghost:hover { border-color: var(--border-hover); background: var(--bg-card); }
 .btn--block { width: 100%; }
+.hero__ctas .btn { text-decoration: none !important; }
 
 /* Sections */
 .section { padding: 80px 0; }
