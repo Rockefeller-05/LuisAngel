@@ -347,8 +347,15 @@ const modalOverlay = document.getElementById('modalOverlay');
 const modalClose = document.getElementById('modalClose');
 const modalWhatsapp = document.getElementById('modalWhatsapp');
 const themeToggle = document.getElementById('themeToggle');
+const cartaSection = document.getElementById('carta');
+const toggleBtn = document.getElementById('toggleCartaBtn');
+const cartaStatus = document.getElementById('cartaStatus');
 
 let currentCocktail = null;
+const INITIAL_VISIBLE = 6;
+const STORAGE_KEY = 'cartaExpanded';
+let isExpanded = false;
+try{ isExpanded = localStorage.getItem(STORAGE_KEY) === '1'; }catch(e){}
 
 cocktailCount.textContent = cocktails.length;
 
@@ -390,11 +397,50 @@ function createCard(cocktail, index) {
     return card;
 }
 
+function applyCartaState(){
+    const cards = [...grid.children];
+    cards.forEach((card,i)=>{
+        const hide = !isExpanded && i >= INITIAL_VISIBLE;
+        card.classList.toggle('is-hidden', hide);
+        card.hidden = hide;
+        card.setAttribute('aria-hidden', hide ? 'true' : 'false');
+        if(!hide) card.style.transitionDelay = `${(i % INITIAL_VISIBLE)*60}ms`;
+    });
+    cartaSection?.classList.toggle('menu--collapsed', !isExpanded);
+    cartaSection?.classList.toggle('menu--expanded', isExpanded);
+    if(toggleBtn){
+        toggleBtn.setAttribute('aria-expanded', String(isExpanded));
+        toggleBtn.innerHTML = isExpanded
+            ? `Ver menos <span aria-hidden="true">↑</span>`
+            : `Ver más <span aria-hidden="true">↓</span> <span class="menu__toggle-count">(${INITIAL_VISIBLE} de ${cocktails.length})</span>`;
+    }
+    if(cartaStatus){
+        cartaStatus.textContent = isExpanded
+            ? `Mostrando ${cocktails.length} cócteles`
+            : `Mostrando ${INITIAL_VISIBLE} de ${cocktails.length} cócteles`;
+    }
+}
+
 function renderCocktails() {
     grid.innerHTML = '';
     cocktails.forEach((cocktail, index) => {
         grid.appendChild(createCard(cocktail, index));
     });
+    applyCartaState();
+}
+
+function toggleCarta(){
+    isExpanded = !isExpanded;
+    try{ localStorage.setItem(STORAGE_KEY, isExpanded ? '1' : '0'); }catch(e){}
+    applyCartaState();
+    setupScrollReveal();
+    if(isExpanded){
+        const firstNew = grid.children[INITIAL_VISIBLE];
+        if(firstNew) firstNew.scrollIntoView({behavior:'smooth', block:'nearest'});
+    } else {
+        cartaSection?.scrollIntoView({behavior:'smooth', block:'start'});
+        toggleBtn?.focus();
+    }
 }
 
 function showModal(cocktail) {
@@ -471,12 +517,14 @@ function loadTheme() {
 
 themeToggle.addEventListener('click', toggleTheme);
 
+let revealObserver = null;
 function setupScrollReveal() {
-    const observer = new IntersectionObserver((entries) => {
+    if(revealObserver) revealObserver.disconnect();
+    revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
+                revealObserver.unobserve(entry.target);
             }
         });
     }, {
@@ -484,8 +532,8 @@ function setupScrollReveal() {
         rootMargin: '0px 0px -50px 0px'
     });
 
-    document.querySelectorAll('.cocktail-card').forEach(card => {
-        observer.observe(card);
+    document.querySelectorAll('.cocktail-card:not(.is-hidden):not([hidden])').forEach(card => {
+        if(!card.classList.contains('visible')) revealObserver.observe(card);
     });
 }
 
@@ -493,6 +541,7 @@ function init() {
     loadTheme();
     renderCocktails();
     setupScrollReveal();
+    toggleBtn?.addEventListener('click', toggleCarta);
 }
 
 init();

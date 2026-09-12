@@ -479,6 +479,15 @@ body::before {
     gap: 32px;
 }
 
+.menu__actions { display: flex; justify-content: center; margin-top: 32px; }
+.menu__toggle { min-width: 200px; }
+.menu__toggle-count { opacity: 0.7; margin-left: 4px; font-weight: 500; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.cocktail-card.is-hidden { display: none !important; }
+.menu--collapsed .menu__grid { mask-image: linear-gradient(to bottom, black 85%, transparent 100%); }
+
+@media (prefers-reduced-motion: reduce){ .cocktail-card.is-hidden { transition: none; } }
+
 /* Card */
 .cocktail-card {
     position: relative;
@@ -1014,13 +1023,19 @@ body::before {
 .contact__list { list-style: none; margin: 18px 0; display: flex; flex-direction: column; gap: 10px; color: var(--text-secondary); font-size: 0.9rem; }
 .contact__list li { display: flex; align-items: center; gap: 8px; }
 .contact__list li svg { color: var(--accent); flex-shrink: 0; }
-.contact__list a { color: var(--accent); text-decoration: none; }
+.contact__list a { color: var(--accent); text-decoration: none; overflow-wrap: anywhere; }
+.contact__list, .contact__info p, .footer { overflow-wrap: anywhere; word-break: break-word; }
 .contact__socials { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 18px; }
 .contact__form { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 28px; display: flex; flex-direction: column; gap: 14px; }
 .contact__form label { display: flex; flex-direction: column; gap: 6px; font-size: 0.85rem; color: var(--text-secondary); font-weight: 500; }
 .contact__form input, .contact__form select, .contact__form textarea { padding: 12px 14px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-primary); color: var(--text-primary); font-family: var(--font-body); font-size: 0.9rem; transition: border-color var(--transition-fast); }
 .contact__form input:focus, .contact__form select:focus, .contact__form textarea:focus { outline: none; border-color: var(--accent); }
-.form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form__row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.form__row > * { min-width: 0; }
+.contact__grid, .contact__info, .contact__form { min-width: 0; }
+.contact__form label { min-width: 0; width: 100%; }
+.contact__form input, .contact__form select, .contact__form textarea { width: 100%; min-width: 0; max-width: 100%; box-sizing: border-box; }
+.contact__form textarea { resize: vertical; min-height: 88px; }
 .form__hint { font-size: 0.75rem; color: var(--text-muted); text-align: center; }
 
 /* FAQ */
@@ -1047,6 +1062,60 @@ body::before {
   .plan-card--featured { transform: none; }
   .plan-card--featured:hover { transform: translateY(-8px); }
 }
+
+/* 100% Responsive - base reset */
+html { overflow-x: hidden; }
+*, *::before, *::after { min-width: 0; }
+img { max-width: 100%; height: auto; }
+.container { padding: 0 clamp(14px, 4vw, 24px); }
+
+/* Cotiza + grids 100% */
+@media (max-width: 600px){
+  .container{padding:0 16px}
+  .section{padding:60px 0}
+  .section__header{margin-bottom:24px}
+  .section__eyebrow{letter-spacing:2px;font-size:0.72rem}
+  .section__title{font-size:clamp(1.6rem,7vw,2rem);line-height:1.15}
+  .nav__logo em{display:none}
+  .nav__cta{padding:12px 20px;min-height:44px}
+  .nav__burger{padding:10px;min-width:44px;min-height:44px;justify-content:center}
+  .services__grid,.plans__grid,.discounts__grid,.testimonials__track{grid-template-columns:1fr;gap:18px}
+  .service-card,.plan-card,.discount-card,.testimonial-card{padding:22px}
+  .plan-card__price strong{font-size:1.35rem}
+  .plan-card__ribbon{right:-28px;padding:5px 28px;font-size:0.65rem}
+  .form__row{grid-template-columns:1fr;gap:12px}
+  .contact__form input,.contact__form select,.contact__form textarea{font-size:16px !important;width:100%;min-width:0;max-width:100%;min-height:44px}
+  .contact__form{padding:20px;gap:12px}
+  .contact__form label{width:100%;min-width:0;overflow:hidden}
+  .contact__socials{flex-direction:column}
+  .contact__socials .btn{width:100%;min-height:44px}
+  .hero__subtitle{letter-spacing:3px;font-size:0.75rem}
+  .hero__title{font-size:clamp(2.2rem,9vw,3.2rem)}
+  .hero__description{font-size:0.98rem}
+  .hero__ctas{flex-direction:column;align-items:stretch}
+  .hero__ctas .btn{width:100%}
+  .hero__trust{gap:10px;font-size:0.75rem}
+  .events__arrow{display:none}
+}
+@media (max-width: 400px){
+  .container{padding:0 14px}
+  .section{padding:48px 0}
+  .section__eyebrow{letter-spacing:1.5px}
+  .plan-card{padding:20px}
+  .service-card{padding:20px}
+  .contact__form{padding:16px;border-radius:16px}
+  .hero{padding:88px 14px 40px}
+}
+@media (max-width: 320px){
+  .container{padding:0 12px}
+  .hero__subtitle{letter-spacing:1.5px;font-size:0.72rem}
+  .hero{padding:88px 12px 40px}
+  .modal__body{padding:20px}
+  .footer{padding:28px 14px}
+}
+
+.btn, .events__arrow, .nav__burger, .modal__close { min-height: 44px; min-width: 44px; }
+.testimonials__dots span, .events__dots span { min-width: 12px; min-height: 12px; padding: 6px; background-clip: content-box; }
 
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
