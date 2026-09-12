@@ -327,7 +327,7 @@ const cocktails = [
     },
     {
         id: 24,
-        name: "Pantera",
+        name: "Pantera Rosa",
         slogan: "Rosa Salvaje",
         description: "Cremosa y visualmente impactante, pisco con leche evaporada y granadina para un icónico color rosa, dulce, suave y envolvente.",
         image: "images/pantera.jpg",
