@@ -62,15 +62,17 @@
     });
   }
 
-  // Donde estuvimos - carrusel con fotos temporales internet (sur Perú)
+  // Donde estuvimos - 9 fotos reales imagenessss
   const eventos = [
-    {img:"https://picsum.photos/seed/boda-juliaca/800/600", titulo:"Boda — Salón Los Andes", lugar:"Juliaca", fecha:"18 May 2026", plan:"Premium · 140 invit.", alt:"Boda Juliaca barra Premium"},
-    {img:"https://picsum.photos/seed/puno-hotel/800/600", titulo:"Corporativo — Hotel Hacienda", lugar:"Puno", fecha:"02 Jun 2026", plan:"Clásica · 90 invit.", alt:"Corporativo Puno barra Clásica"},
-    {img:"https://picsum.photos/seed/quince-juliaca/800/600", titulo:"Quinceañero — Local Villa Sur", lugar:"Juliaca", fecha:"20 Jun 2026", plan:"Premium · 110 invit.", alt:"Quinceañero Juliaca"},
-    {img:"https://picsum.photos/seed/festival-puno/800/600", titulo:"Festival — Plaza de Armas", lugar:"Puno", fecha:"05 Jul 2026", plan:"Élite · 300 invit.", alt:"Festival Puno Élite"},
-    {img:"https://picsum.photos/seed/arequipa-terraza/800/600", titulo:"Privado — Terraza Arequipa", lugar:"Arequipa", fecha:"12 Jul 2026", plan:"Clásica · 60 invit.", alt:"Terraza Arequipa"},
-    {img:"https://picsum.photos/seed/cusco-aniversario/800/600", titulo:"Aniversario — Centro Convenciones", lugar:"Cusco", fecha:"28 Jul 2026", plan:"Élite · 200 invit.", alt:"Aniversario Cusco"},
-    {img:"https://picsum.photos/seed/tacna-local/800/600", titulo:"Inauguración — Local Tacna", lugar:"Tacna", fecha:"08 Ago 2026", plan:"Premium · 80 invit.", alt:"Tacna Premium"}
+    {img:"images/eventos/evento-01.jpg", titulo:"Boda — Salón Los Andes", lugar:"Juliaca", fecha:"18 May 2026", plan:"Premium · 140 invit.", alt:"Boda Juliaca barra Premium"},
+    {img:"images/eventos/evento-02.jpg", titulo:"Corporativo — Hotel Hacienda", lugar:"Puno", fecha:"02 Jun 2026", plan:"Clásica · 90 invit.", alt:"Corporativo Puno barra Clásica"},
+    {img:"images/eventos/evento-03.jpg", titulo:"Quinceañero — Local Villa Sur", lugar:"Juliaca", fecha:"20 Jun 2026", plan:"Premium · 110 invit.", alt:"Quinceañero Juliaca"},
+    {img:"images/eventos/evento-04.jpg", titulo:"Festival — Plaza de Armas", lugar:"Puno", fecha:"05 Jul 2026", plan:"Élite · 300 invit.", alt:"Festival Puno Élite"},
+    {img:"images/eventos/evento-05.jpg", titulo:"Privado — Terraza Arequipa", lugar:"Arequipa", fecha:"12 Jul 2026", plan:"Clásica · 60 invit.", alt:"Terraza Arequipa"},
+    {img:"images/eventos/evento-06.jpg", titulo:"Aniversario — Centro Convenciones", lugar:"Cusco", fecha:"28 Jul 2026", plan:"Élite · 200 invit.", alt:"Aniversario Cusco"},
+    {img:"images/eventos/evento-07.jpg", titulo:"Inauguración — Local Tacna", lugar:"Tacna", fecha:"08 Ago 2026", plan:"Premium · 80 invit.", alt:"Tacna Premium"},
+    {img:"images/eventos/evento-08.jpg", titulo:"Matrimonio — Salón Imperial", lugar:"Juliaca", fecha:"15 Ago 2026", plan:"Premium · 130 invit.", alt:"Matrimonio Juliaca Premium"},
+    {img:"images/eventos/evento-09.jpg", titulo:"Corporativo — Moquegua Centro", lugar:"Moquegua", fecha:"22 Ago 2026", plan:"Clásica · 70 invit.", alt:"Corporativo Moquegua Clásica"}
   ];
   const eTrack = document.getElementById('eventsTrack');
   const eDots = document.getElementById('eventsDots');
@@ -79,7 +81,7 @@
   if(eTrack){
     eTrack.innerHTML = eventos.map(ev=>`
       <article class="event-card">
-        <img src="${ev.img}" alt="${ev.alt}" loading="lazy" onerror="this.src='images/mojito.jpg'" referrerpolicy="no-referrer">
+        <img src="${ev.img}" alt="${ev.alt}" loading="lazy" onerror="this.src='images/mojito.jpg'">
         <div class="event-card__overlay">
           <h3>${ev.titulo}</h3>
           <div class="event-card__meta">
