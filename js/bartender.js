@@ -62,6 +62,53 @@
     });
   }
 
+  // Donde estuvimos - carrusel con fotos temporales internet (sur Perú)
+  const eventos = [
+    {img:"https://picsum.photos/seed/boda-juliaca/800/600", titulo:"Boda — Salón Los Andes", lugar:"Juliaca", fecha:"18 May 2026", plan:"Premium · 140 invit.", alt:"Boda Juliaca barra Premium"},
+    {img:"https://picsum.photos/seed/puno-hotel/800/600", titulo:"Corporativo — Hotel Hacienda", lugar:"Puno", fecha:"02 Jun 2026", plan:"Clásica · 90 invit.", alt:"Corporativo Puno barra Clásica"},
+    {img:"https://picsum.photos/seed/quince-juliaca/800/600", titulo:"Quinceañero — Local Villa Sur", lugar:"Juliaca", fecha:"20 Jun 2026", plan:"Premium · 110 invit.", alt:"Quinceañero Juliaca"},
+    {img:"https://picsum.photos/seed/festival-puno/800/600", titulo:"Festival — Plaza de Armas", lugar:"Puno", fecha:"05 Jul 2026", plan:"Élite · 300 invit.", alt:"Festival Puno Élite"},
+    {img:"https://picsum.photos/seed/arequipa-terraza/800/600", titulo:"Privado — Terraza Arequipa", lugar:"Arequipa", fecha:"12 Jul 2026", plan:"Clásica · 60 invit.", alt:"Terraza Arequipa"},
+    {img:"https://picsum.photos/seed/cusco-aniversario/800/600", titulo:"Aniversario — Centro Convenciones", lugar:"Cusco", fecha:"28 Jul 2026", plan:"Élite · 200 invit.", alt:"Aniversario Cusco"},
+    {img:"https://picsum.photos/seed/tacna-local/800/600", titulo:"Inauguración — Local Tacna", lugar:"Tacna", fecha:"08 Ago 2026", plan:"Premium · 80 invit.", alt:"Tacna Premium"}
+  ];
+  const eTrack = document.getElementById('eventsTrack');
+  const eDots = document.getElementById('eventsDots');
+  const ePrev = document.getElementById('eventsPrev');
+  const eNext = document.getElementById('eventsNext');
+  if(eTrack){
+    eTrack.innerHTML = eventos.map(ev=>`
+      <article class="event-card">
+        <img src="${ev.img}" alt="${ev.alt}" loading="lazy" onerror="this.src='images/mojito.jpg'" referrerpolicy="no-referrer">
+        <div class="event-card__overlay">
+          <h3>${ev.titulo}</h3>
+          <div class="event-card__meta">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7 -5 7 -11a7 7 0 1 0 -14 0c0 6 7 11 7 11z"/><circle cx="12" cy="10" r="3"/></svg> ${ev.lugar}</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="1"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> ${ev.fecha}</span>
+            <span>${ev.plan}</span>
+          </div>
+        </div>
+      </article>
+    `).join('');
+    if(eDots){
+      eventos.forEach((_,i)=>{
+        const d=document.createElement('span');
+        if(i===0) d.classList.add('active');
+        d.addEventListener('click', ()=> eTrack.children[i].scrollIntoView({behavior:'smooth', inline:'start', block:'nearest'}));
+        eDots.appendChild(d);
+      });
+      eTrack.addEventListener('scroll', ()=>{
+        const idx = Math.round(eTrack.scrollLeft / 356);
+        [...eDots.children].forEach((d,i)=> d.classList.toggle('active', i===idx));
+      });
+    }
+    ePrev?.addEventListener('click', ()=> eTrack.scrollBy({left:-360, behavior:'smooth'}));
+    eNext?.addEventListener('click', ()=> eTrack.scrollBy({left:360, behavior:'smooth'}));
+    let auto = setInterval(()=> eTrack.scrollBy({left:360, behavior:'smooth'}), 4000);
+    eTrack.addEventListener('mouseenter', ()=> clearInterval(auto));
+    eTrack.addEventListener('mouseleave', ()=> auto = setInterval(()=> eTrack.scrollBy({left:360, behavior:'smooth'}), 4000));
+  }
+
   // Contact form -> WhatsApp
   const form = document.getElementById('contactForm');
   if(form){
