@@ -21,6 +21,10 @@
     --hero-gradient-2: #0f0f12;
     --hero-gradient-3: #2d1b2e;
 
+    --hero-photo: url('../images/hero-barra.jpeg');
+    --hero-scrim: rgba(15, 15, 18, 0.85);
+    --hero-scrim-mid: rgba(15, 15, 18, 0.65);
+
     --radius-sm: 8px;
     --radius-md: 16px;
     --radius-lg: 24px;
@@ -48,6 +52,9 @@
     --hero-gradient-1: #fff0e0;
     --hero-gradient-2: #ffe8d6;
     --hero-gradient-3: #fff5e6;
+
+    --hero-scrim: rgba(255, 248, 240, 0.82);
+    --hero-scrim-mid: rgba(255, 248, 240, 0.55);
 }
 
 * {
@@ -147,13 +154,6 @@ body::before {
     100% { background-position: 200% center; }
 }
 
-@keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    25% { background-position: 50% 0%; }
-    50% { background-position: 100% 50%; }
-    75% { background-position: 50% 100%; }
-    100% { background-position: 0% 50%; }
-}
 
 @keyframes twinkle {
     0%, 100% { opacity: 0; transform: scale(0); }
@@ -277,10 +277,9 @@ body::before {
     position: absolute;
     inset: 0;
     z-index: 0;
-    background: linear-gradient(135deg, var(--hero-gradient-1), var(--hero-gradient-2), var(--hero-gradient-3));
-    background-size: 400% 400%;
-    animation: gradientShift 12s ease infinite;
-    opacity: 0.5;
+    background:
+        linear-gradient(180deg, var(--hero-scrim) 0%, var(--hero-scrim-mid) 32%, var(--hero-scrim-mid) 62%, var(--hero-scrim) 100%),
+        var(--hero-photo) center 30% / cover no-repeat;
     transition: opacity var(--transition-medium);
 }
 
@@ -843,6 +842,12 @@ body::before {
     .hero {
         min-height: 90vh;
         padding: 100px 20px 60px;
+    }
+
+    .hero__bg {
+        background:
+            linear-gradient(180deg, var(--hero-scrim) 0%, var(--hero-scrim-mid) 30%, var(--hero-scrim-mid) 65%, var(--hero-scrim) 100%),
+            var(--hero-photo) center 25% / cover no-repeat;
     }
 
     .hero__decor {
