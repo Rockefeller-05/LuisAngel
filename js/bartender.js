@@ -28,7 +28,7 @@
   // Testimonials
   const testimonials = [
     {name:"María & Jorge", role:"Boda · Puno", stars:5, text:"La barra fue el alma de la fiesta. Puntuales, elegantes y los chilcanos volaron. ¡Todos preguntaron por el bartender!"},
-    {name:"Gerencia HR", role:"Corporativo · Juliaca", stars:5, text:"Servicio impecable para 120 personas. Facturación al día y barra branding con nuestro logo. Repetiremos en diciembre."},
+    {name:"Gerencia HR", role:"Corporativo · Juliaca", stars:5, text:"Servicio impecable para 120 personas. Contrato al día y barra branding con nuestro logo. Repetiremos en diciembre."},
     {name:"Camila R.", role:"Cumpleaños · Juliaca", stars:5, text:"Pedimos Barra Premium y superó expectativas. El show de flair y los cócteles sin alcohol para los niños fueron un detalleazo."},
     {name:"Local Andino", role:"Festival · Desaguadero", stars:4, text:"Alto flujo y nunca colapsaron. Stock perfecto y control de caja transparente."},
   ];
@@ -102,11 +102,15 @@
         [...eDots.children].forEach((d,i)=> d.classList.toggle('active', i===idx));
       });
     }
-    ePrev?.addEventListener('click', ()=> eTrack.scrollBy({left:-360, behavior:'smooth'}));
-    eNext?.addEventListener('click', ()=> eTrack.scrollBy({left:360, behavior:'smooth'}));
-    let auto = setInterval(()=> eTrack.scrollBy({left:360, behavior:'smooth'}), 4000);
+    function scrollNext(){ const atEnd = eTrack.scrollLeft + eTrack.clientWidth >= eTrack.scrollWidth - 10; if(atEnd) eTrack.scrollTo({left:0, behavior:'smooth'}); else eTrack.scrollBy({left:360, behavior:'smooth'}); }
+    function scrollPrev(){ const atStart = eTrack.scrollLeft <= 10; if(atStart) eTrack.scrollTo({left: eTrack.scrollWidth, behavior:'smooth'}); else eTrack.scrollBy({left:-360, behavior:'smooth'}); }
+    ePrev?.addEventListener('click', scrollPrev);
+    eNext?.addEventListener('click', scrollNext);
+    let auto = setInterval(scrollNext, 3500);
     eTrack.addEventListener('mouseenter', ()=> clearInterval(auto));
-    eTrack.addEventListener('mouseleave', ()=> auto = setInterval(()=> eTrack.scrollBy({left:360, behavior:'smooth'}), 4000));
+    eTrack.addEventListener('mouseleave', ()=> auto = setInterval(scrollNext, 3500));
+    // pause when tab hidden
+    document.addEventListener('visibilitychange', ()=>{ if(document.hidden) clearInterval(auto); else auto = setInterval(scrollNext,3500); });
   }
 
   // Contact form -> WhatsApp
