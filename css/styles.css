@@ -1013,8 +1013,6 @@ body::before {
 .events__dots { display: flex; justify-content: center; gap: 8px; margin-top: 14px; }
 .events__dots span { width: 8px; height: 8px; border-radius: 50%; background: var(--border); cursor: pointer; transition: background var(--transition-fast); }
 .events__dots span.active { background: var(--accent); }
-.events__note { text-align: center; font-size: 0.75rem; color: var(--text-muted); margin-top: 12px; }
-.events__note code { background: var(--bg-secondary); padding: 2px 6px; border-radius: 6px; font-size: 0.75rem; }
 @media (max-width: 768px){ .event-card{ flex: 0 0 85%; } }
 
 /* Contact */
