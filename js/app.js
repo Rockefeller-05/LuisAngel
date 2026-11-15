@@ -337,6 +337,82 @@ const cocktails = [
             "1 oz (30 ml) de Jarabe de granadina (para darle el icónico color rosa)",
             "Hielo"
         ]
+    },
+    {
+        id: 25,
+        name: "Tinto de Verano",
+        slogan: "El Refresco Español",
+        description: "La versión de la casa del clásico español: vino tinto joven, jugo de naranja y Sprite bien fríos, servido con abundante hielo para un trago ligero y burbujeante.",
+        image: "images/tinto-de-verano.jpg",
+        ingredients: [
+            "Vino tinto joven",
+            "Jugo de naranja",
+            "Sprite",
+            "Hielo",
+            "Decoración: Rodaja de naranja y limón"
+        ]
+    },
+    {
+        id: 26,
+        name: "Cuba Libre",
+        slogan: "Libertad en un Vaso",
+        description: "El clásico cubano de ron dorado y Coca-Cola con un toque de limón fresco, servido bien helado sobre hielo.",
+        image: "images/cuba-libre.jpg",
+        ingredients: [
+            "50 ml de Ron dorado",
+            "10 ml de Jugo de limón",
+            "120 ml de Coca-Cola",
+            "Hielo",
+            "Decoración: Gajo de limón"
+        ]
+    },
+    {
+        id: 27,
+        name: "Imperial Sunrise",
+        slogan: "Amanecer Imperial",
+        description: "Nuestra versión de la casa del amanecer: tequila dorada, licor de guinda y maracuyá con el degradado de granadina que evoca las primeras luces del sol.",
+        image: "images/imperial-sunrise.jpg",
+        ingredients: [
+            "Tequila dorada",
+            "Licor de guinda",
+            "Jugo de maracuyá",
+            "Jugo de naranja",
+            "Jarabe de granadina",
+            "Hielo",
+            "Decoración: Rodaja de naranja y guinda"
+        ]
+    },
+    {
+        id: 28,
+        name: "Sex on the Beach",
+        slogan: "Seducción Tropical",
+        description: "Versión de la casa con whisky, licor de guinda y jugos tropicales de mango, durazno y naranja, coronada con granadina para un degrade vibrante.",
+        image: "images/sex-on-the-beach.jpg",
+        ingredients: [
+            "Whisky",
+            "Licor de guinda",
+            "Jugo de mango",
+            "Jugo de durazno",
+            "Jugo de naranja",
+            "Jarabe de granadina",
+            "Hielo",
+            "Decoración: Rodaja de naranja y cereza"
+        ]
+    },
+    {
+        id: 29,
+        name: "Cosmopolita",
+        slogan: "Elegancia Cítrica",
+        description: "El clásico cosmopolita con vodka, triple sec y arándano, equilibrado con limón fresco y servido bien frío.",
+        image: "images/cosmopolita.jpg",
+        ingredients: [
+            "40 ml de Vodka",
+            "15 ml de Triple sec",
+            "30 ml de Jarabe de arándano",
+            "15 ml de Jugo de limón",
+            "Hielo",
+            "Decoración: Twist de limón"
+        ]
     }
 ];
 
