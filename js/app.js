@@ -430,6 +430,7 @@ const cartaStatus = document.getElementById('cartaStatus');
 let currentCocktail = null;
 const INITIAL_VISIBLE = 6;
 const STORAGE_KEY = 'cartaExpanded';
+const mobileCartaQuery = window.matchMedia('(max-width: 768px)');
 let isExpanded = false;
 try{ isExpanded = localStorage.getItem(STORAGE_KEY) === '1'; }catch(e){}
 
@@ -474,16 +475,17 @@ function createCard(cocktail, index) {
 }
 
 function applyCartaState(){
+    const compactView = mobileCartaQuery.matches;
     const cards = [...grid.children];
     cards.forEach((card,i)=>{
-        const hide = !isExpanded && i >= INITIAL_VISIBLE;
+        const hide = !compactView && !isExpanded && i >= INITIAL_VISIBLE;
         card.classList.toggle('is-hidden', hide);
         card.hidden = hide;
         card.setAttribute('aria-hidden', hide ? 'true' : 'false');
         if(!hide) card.style.transitionDelay = `${(i % INITIAL_VISIBLE)*60}ms`;
     });
-    cartaSection?.classList.toggle('menu--collapsed', !isExpanded);
-    cartaSection?.classList.toggle('menu--expanded', isExpanded);
+    cartaSection?.classList.toggle('menu--collapsed', !compactView && !isExpanded);
+    cartaSection?.classList.toggle('menu--expanded', !compactView && isExpanded);
     if(toggleBtn){
         toggleBtn.setAttribute('aria-expanded', String(isExpanded));
         toggleBtn.innerHTML = isExpanded
@@ -491,10 +493,21 @@ function applyCartaState(){
             : `Ver más <span aria-hidden="true">↓</span> <span class="menu__toggle-count">(${INITIAL_VISIBLE} de ${cocktails.length})</span>`;
     }
     if(cartaStatus){
-        cartaStatus.textContent = isExpanded
+        cartaStatus.textContent = compactView || isExpanded
             ? `Mostrando ${cocktails.length} cócteles`
             : `Mostrando ${INITIAL_VISIBLE} de ${cocktails.length} cócteles`;
     }
+}
+
+function handleCartaViewportChange(){
+    applyCartaState();
+    setupScrollReveal();
+}
+
+if (mobileCartaQuery.addEventListener) {
+    mobileCartaQuery.addEventListener('change', handleCartaViewportChange);
+} else if (mobileCartaQuery.addListener) {
+    mobileCartaQuery.addListener(handleCartaViewportChange);
 }
 
 function renderCocktails() {

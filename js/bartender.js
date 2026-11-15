@@ -1,5 +1,8 @@
 // Bartender services - testimonials, nav, contact
 (function(){
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const scrollMode = () => reduceMotion.matches ? 'auto' : 'smooth';
+
   // NAV burger
   const burger = document.getElementById('navBurger');
   const links = document.getElementById('navLinks');
@@ -20,7 +23,7 @@
       const id = a.getAttribute('href');
       if(id.length>1){
         const el = document.querySelector(id);
-        if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+        if(el){ e.preventDefault(); el.scrollIntoView({behavior: scrollMode(), block:'start'}); }
       }
     });
   });
@@ -41,7 +44,6 @@
     return s;
   }
   const tTrack = document.getElementById('testimonialsTrack');
-  const tDots = document.getElementById('testimonialsDots');
   if(tTrack){
     tTrack.innerHTML = testimonials.map(t=>`
       <article class="testimonial-card">
@@ -53,13 +55,6 @@
         <p>"${t.text}"</p>
       </article>
     `).join('');
-  }
-  if(tDots){
-    testimonials.forEach((_,i)=>{
-      const s=document.createElement('span');
-      if(i===0) s.classList.add('active');
-      tDots.appendChild(s);
-    });
   }
 
   // Donde estuvimos - 9 fotos reales imagenessss
@@ -92,28 +87,148 @@
         </div>
       </article>
     `).join('');
+    function eventIndex(){
+      const max = eTrack.scrollWidth - eTrack.clientWidth;
+      if(eTrack.scrollLeft <= 2) return 0;
+      if(max > 0 && eTrack.scrollLeft >= max - 2) return eTrack.children.length - 1;
+      const pad = parseFloat(getComputedStyle(eTrack).scrollPaddingLeft) || 0;
+      const left = eTrack.getBoundingClientRect().left + pad;
+      let idx = 0, min = Infinity;
+      [...eTrack.children].forEach((c,i)=>{
+        const d = Math.abs(c.getBoundingClientRect().left - left);
+        if(d < min){ min = d; idx = i; }
+      });
+      return idx;
+    }
+    function eventGoTo(index){
+      const card = eTrack.children[index];
+      if(!card) return;
+      const pad = parseFloat(getComputedStyle(eTrack).scrollPaddingLeft) || 0;
+      const left = card.getBoundingClientRect().left - eTrack.getBoundingClientRect().left + eTrack.scrollLeft - pad;
+      eTrack.scrollTo({left, behavior: scrollMode()});
+    }
     if(eDots){
       eventos.forEach((_,i)=>{
         const d=document.createElement('span');
         if(i===0) d.classList.add('active');
-        d.addEventListener('click', ()=> eTrack.children[i].scrollIntoView({behavior:'smooth', inline:'start', block:'nearest'}));
+        d.addEventListener('click', ()=> eventGoTo(i));
         eDots.appendChild(d);
       });
       eTrack.addEventListener('scroll', ()=>{
-        const idx = Math.round(eTrack.scrollLeft / 356);
+        const idx = eventIndex();
         [...eDots.children].forEach((d,i)=> d.classList.toggle('active', i===idx));
-      });
+      }, {passive:true});
     }
-    function scrollNext(){ const atEnd = eTrack.scrollLeft + eTrack.clientWidth >= eTrack.scrollWidth - 10; if(atEnd) eTrack.scrollTo({left:0, behavior:'smooth'}); else eTrack.scrollBy({left:360, behavior:'smooth'}); }
-    function scrollPrev(){ const atStart = eTrack.scrollLeft <= 10; if(atStart) eTrack.scrollTo({left: eTrack.scrollWidth, behavior:'smooth'}); else eTrack.scrollBy({left:-360, behavior:'smooth'}); }
+    function eventStep(dir){
+      const cards = [...eTrack.children];
+      if(!cards.length) return;
+      const idx = eventIndex();
+      const next = (idx + dir + cards.length) % cards.length;
+      eventGoTo(next);
+    }
+    function scrollNext(){ eventStep(1); }
+    function scrollPrev(){ eventStep(-1); }
     ePrev?.addEventListener('click', scrollPrev);
     eNext?.addEventListener('click', scrollNext);
-    let auto = setInterval(scrollNext, 3500);
+    const autoEnabled = () => !window.matchMedia('(max-width: 768px)').matches && !reduceMotion.matches;
+    let auto = setInterval(()=>{ if(autoEnabled()) scrollNext(); }, 3500);
     eTrack.addEventListener('mouseenter', ()=> clearInterval(auto));
-    eTrack.addEventListener('mouseleave', ()=> auto = setInterval(scrollNext, 3500));
+    eTrack.addEventListener('mouseleave', ()=> { auto = setInterval(()=>{ if(autoEnabled()) scrollNext(); }, 3500); });
     // pause when tab hidden
-    document.addEventListener('visibilitychange', ()=>{ if(document.hidden) clearInterval(auto); else auto = setInterval(scrollNext,3500); });
+    document.addEventListener('visibilitychange', ()=>{ if(document.hidden) clearInterval(auto); else auto = setInterval(()=>{ if(autoEnabled()) scrollNext(); }, 3500); });
   }
+
+  // Rails horizontales genéricos (móvil)
+  const railLabels = { servicios:'Servicios', planes:'Planes', beneficios:'Beneficios', resenas:'Reseñas', carta:'Carta de cócteles' };
+  const railMobile = window.matchMedia('(max-width: 768px)');
+
+  function initRail(track, dotsContainer){
+    const cards = [...track.children];
+    if(!cards.length) return;
+    const key = track.dataset.rail;
+    track.setAttribute('role', 'region');
+    track.setAttribute('aria-label', railLabels[key] || 'Carrusel');
+    const progressBar = key === 'carta' ? document.querySelector('[data-rail-progress="carta"] span') : null;
+    const dots = [];
+
+    function goTo(index){
+      const card = cards[index];
+      if(!card) return;
+      const pad = parseFloat(getComputedStyle(track).scrollPaddingLeft) || 0;
+      const left = card.getBoundingClientRect().left - track.getBoundingClientRect().left + track.scrollLeft - pad;
+      track.scrollTo({ left, behavior: scrollMode() });
+    }
+
+    function activeIndex(){
+      const max = track.scrollWidth - track.clientWidth;
+      if(track.scrollLeft <= 2) return 0;
+      if(max > 0 && track.scrollLeft >= max - 2) return cards.length - 1;
+      const pad = parseFloat(getComputedStyle(track).scrollPaddingLeft) || 0;
+      const left = track.getBoundingClientRect().left + pad;
+      let active = 0, min = Infinity;
+      cards.forEach((c,i)=>{
+        const d = Math.abs(c.getBoundingClientRect().left - left);
+        if(d < min){ min = d; active = i; }
+      });
+      return active;
+    }
+
+    function update(){
+      const active = activeIndex();
+      dots.forEach((d,i)=>{
+        d.classList.toggle('active', i === active);
+        if(i === active) d.setAttribute('aria-current', 'true');
+        else d.removeAttribute('aria-current');
+      });
+      if(progressBar){
+        const max = track.scrollWidth - track.clientWidth;
+        const pct = max > 0 ? (track.scrollLeft / max) : 0;
+        progressBar.style.width = `${Math.max(12, pct * 100)}%`;
+      }
+    }
+
+    if(dotsContainer){
+      dotsContainer.innerHTML = '';
+      cards.forEach((card,i)=>{
+        const b = document.createElement('button');
+        b.type = 'button';
+        const label = card.querySelector('h3, .testimonial-card__name')?.textContent?.trim() || `elemento ${i+1}`;
+        b.setAttribute('aria-label', `Ir a ${label}`);
+        b.addEventListener('click', ()=> goTo(i));
+        dotsContainer.appendChild(b);
+        dots.push(b);
+      });
+    }
+
+    let raf = null;
+    track.addEventListener('scroll', ()=>{
+      if(raf) return;
+      raf = requestAnimationFrame(()=>{ raf = null; update(); });
+    }, {passive:true});
+
+    track.addEventListener('keydown', (e)=>{
+      if(e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+      e.preventDefault();
+      const next = Math.min(cards.length - 1, Math.max(0, activeIndex() + (e.key === 'ArrowRight' ? 1 : -1)));
+      goTo(next);
+    });
+
+    update();
+  }
+
+  function syncRailTabindex(){
+    document.querySelectorAll('[data-rail]').forEach(track=>{
+      if(railMobile.matches) track.setAttribute('tabindex', '0');
+      else track.removeAttribute('tabindex');
+    });
+  }
+
+  document.querySelectorAll('[data-rail]').forEach(track=>{
+    initRail(track, document.querySelector(`[data-rail-dots="${track.dataset.rail}"]`));
+  });
+  syncRailTabindex();
+  if(railMobile.addEventListener) railMobile.addEventListener('change', syncRailTabindex);
+  else if(railMobile.addListener) railMobile.addListener(syncRailTabindex);
 
   // Contact form -> WhatsApp
   const form = document.getElementById('contactForm');
